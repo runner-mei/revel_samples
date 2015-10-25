@@ -1,5 +1,5 @@
-{{set . "title" "Search"}}
-{{template "header.html" .}}
+{%set title="Search"%}
+{%include "header.html" %}
 
 <h1>Search Hotels</h1>
 
@@ -71,11 +71,11 @@
 
 <h1>Current Hotel Bookings</h1>
 
-{{if not .bookings}}
+{%if not bookings%}
 <p>
   No Bookings Found
 </p>
-{{else}}
+{%else%}
 <table>
   <thead>
     <tr>
@@ -89,23 +89,23 @@
     </tr>
   </thead>
   <tbody>
-    {{range .bookings}}
+    {%for booking in bookings%}
     <tr>
-      <td>{{.Hotel.Name}}</td>
-      <td>{{.Hotel.Address}}</td>
-      <td>{{.Hotel.City}}, {{.Hotel.State}}, {{.Hotel.Country}}</td>
-      <td>{{.CheckInDate.Format "2006-01-02"}}</td>
-      <td>{{.CheckOutDate.Format "2006-01-02"}}</td>
-      <td>{{.BookingId}}</td>
+      <td>{{booking.Hotel.Name}}</td>
+      <td>{{booking.Hotel.Address}}</td>
+      <td>{{booking.Hotel.City}}, {{booking.Hotel.State}}, {{booking.Hotel.Country}}</td>
+      <td>{{booking.CheckInDate|date:"2006-01-02"}}</td>
+      <td>{{booking.CheckOutDate|date:"2006-01-02"}}</td>
+      <td>{{booking.BookingId}}</td>
       <td>
-        <form id="d{{.BookingId}}" method="POST" action="/bookings/{{.BookingId}}/cancel">
-          <a href="javascript:document.getElementById('d{{.BookingId}}').submit();">Cancel</a>
+        <form id="d{{booking.BookingId}}" method="POST" action="/bookings/{{booking.BookingId}}/cancel">
+          <a href="javascript:document.getElementById('d{{booking.BookingId}}').submit();">Cancel</a>
         </form>
       </td>
     </tr>
-    {{end}}
+    {%endfor%}
   </tbody>
 </table>
-{{end}}
+{%endif%}
 
-{{template "footer.html" .}}
+{%include "footer.html" %}

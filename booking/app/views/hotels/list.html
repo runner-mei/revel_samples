@@ -1,4 +1,4 @@
-{{if .hotels}}
+{%if hotels%}
 <table>
   <thead>
     <tr>
@@ -10,25 +10,25 @@
     </tr>
   </thead>
   <tbody>
-    {{range .hotels}}
+    {%for hotel in hotels%}
     <tr>
-      <td>{{.Name}}</td>
-      <td>{{.Address}}</td>
-      <td>{{.City}}, {{.State}}, {{.Country}}</td>
-      <td>{{.Zip}}</td>
+      <td>{{hotel.Name}}</td>
+      <td>{{hotel.Address}}</td>
+      <td>{{hotel.City}}, {{hotel.State}}, {{hotel.Country}}</td>
+      <td>{{hotel.Zip}}</td>
       <td>
-        <a href="{{url "Hotels.Show" .HotelId}}">View Hotel</a>
+        <a href="{%url "Hotels.Show" hotel.HotelId%}">View Hotel</a>
       </td>
     </tr>
-    {{end}}
+    {%endfor%}
   </tbody>
 </table>
 <p>
-  <a id="nextPage" href="{{.nextPage}}">More results</a>
+  <a id="nextPage" href="{{hotel.nextPage}}">More results</a>
 </p>
 
-{{else}}
+{%else%}
 <p>
   No more results
 </p>
-{{end}}
+{%endif%}
