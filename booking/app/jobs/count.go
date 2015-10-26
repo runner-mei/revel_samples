@@ -2,10 +2,11 @@ package jobs
 
 import (
 	"fmt"
-	"github.com/revel/revel"
+
 	"github.com/revel/modules/jobs/app/jobs"
-	"github.com/revel/samples/booking/app/controllers"
-	"github.com/revel/samples/booking/app/models"
+	"github.com/revel/revel"
+	"github.com/runner-mei/revel_samples/booking/app/controllers"
+	"github.com/runner-mei/revel_samples/booking/app/models"
 )
 
 // Periodically count the bookings in the database.
